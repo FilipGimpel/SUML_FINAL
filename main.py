@@ -29,14 +29,6 @@ def predict(_model, _sequence, _scaler):
     return _prediction
 
 
-def print_prediction(_prediction):
-    # print the prediction row by row and format it
-    for row in _prediction:
-        print('precipitation: {:.2f} temp_max: {:.2f} temp_min: {:.2f} wind: {:.2f} weather: {}'.format(row[1], row[2],
-                                                                                                        row[3], row[4],
-                                                                                                        row[5]))
-
-
 def dataframe_prediction(_prediction):
     today = datetime.today()
     prediction = []
@@ -45,7 +37,7 @@ def dataframe_prediction(_prediction):
     for i, row in enumerate(_prediction):
         # Generate the date for the next day
         next_day = (today + timedelta(days=i + 1)).strftime('%Y-%m-%d')
-        prediction.append([next_day, row[1], row[2], row[3], row[4], row[5]])
+        prediction.append([next_day, max(0,row[1]), row[2], row[3], row[4], row[5]])
 
     weather = pd.DataFrame(prediction)
     weather.columns = ['date', 'precipitation', 'temp_max', 'temp_min', 'wind', 'weather']
@@ -66,6 +58,10 @@ def main():
 
     with overview:
         st.title("Seattle Weather Prediction")
+        st.write("This app uses historical weather data ("
+                 "https://www.kaggle.com/datasets/ananthr1/weather-prediction/data) to train a model, then fetches the "
+                 "weather from the last ten days using https://www.weatherapi.com/ and predicts the weather for the "
+                 "next ten days.")
         st.subheader("Last ten days of weather:")
         st.write(past_weather_to_print.tail(10))
 
