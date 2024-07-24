@@ -86,8 +86,8 @@ def prepare_sequence():
     # Get today's date
     today = datetime.today()
 
-    # Generate a list of the last ten 20 days (invert)
-    last_ten_days = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(20)][::-1]
+    # Generate a list of the last ten 6 days (invert)
+    last_ten_days = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(1, 7)][::-1]
 
     weather = []
 

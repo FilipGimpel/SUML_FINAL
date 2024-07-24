@@ -25,7 +25,7 @@ def preprocess_data(_df):
     scaled_data = scaler.fit_transform(_df[['month', 'precipitation', 'temp_max', 'temp_min', 'wind', 'weather']])
 
     # Convert data into sequences
-    sequence_length = 10
+    sequence_length = 3
     result = []
     for index in range(len(scaled_data) - sequence_length):
         result.append(scaled_data[index: index + sequence_length])

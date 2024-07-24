@@ -60,12 +60,12 @@ def main():
         st.title("Seattle Weather Prediction")
         st.write("This app uses historical weather data ("
                  "https://www.kaggle.com/datasets/ananthr1/weather-prediction/data) to train a model, then fetches the "
-                 "weather from the last ten days using https://www.weatherapi.com/ and predicts the weather for the "
-                 "next ten days.")
-        st.subheader("Last ten days of weather:")
+                 "weather from the last six days using https://www.weatherapi.com/ and predicts the weather for the "
+                 "next three days.")
+        st.subheader("Last six days of weather:")
         st.write(past_weather_to_print.tail(10))
 
-        st.subheader("The weather prediction for the next ten days is as follows:")
+        st.subheader("The weather prediction for the next three days is as follows:")
         st.write(dataframe_prediction(prediction))
 
 
